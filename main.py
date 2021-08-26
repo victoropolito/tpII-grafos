@@ -14,7 +14,7 @@ def abrir_arquivo(arquivo, modo_abertura):
     return open(arquivo, modo_abertura)
 
 
-def lista(arq):
+'''def lista(arq):
     arq = abrir_arquivo(arq, 'r')
     memoryStart = get_process_memory()
     arq.seek(0)
@@ -37,7 +37,7 @@ def lista(arq):
     memoryEnd = get_process_memory()
     Memoria = (memoryEnd - memoryStart) / (1024 * 1024)
     print(Memoria, "MB")
-    return Lista
+    return Lista'''
 
 
 def matriz(arq):
@@ -84,7 +84,7 @@ def grafo_completo(V, wMin, wMax):
             G[u][v] = w
             G[v][u] = w
             i += 1
-    return G  #retorna grafo em matriz
+    return G  #retorna grafo em matriz'''
 
 
 # converte de matriz para lista
@@ -99,20 +99,20 @@ def converter(a):
                      w))  # cria uma lista com os dados dos vertices e peso
     return ListaAdj
 
-
+'''
 # imprime matriz
 def imprime_matriz(matriz):
     print("~ MATRIZ ~")
     for i in range(len(matriz)):
-        print(matriz[i])
+        print(matriz[i])'''
 
-
+'''
 # encontrar o peso entre dois vertices
 def peso_aresta(u, v, listaAdj):
     for x, y, w in listaAdj:
         if u == x and v == y:
             return w
-    print("Erro! Peso não definido.")
+    print("Erro! Peso não definido.")'''
 
 
 # algoritmo vizinho mais próximo
@@ -156,7 +156,7 @@ def vizinhoMaisProximo(grafo):
 
     caminho.append(vertice)
 
-    custo += grafo[caminho[-1]][caminho[0]]
+    custo += grafo[caminho[-1]][caminho[0]] # ultima iteração
     custo = round(custo, 2)
     caminho.append(origem)
     fim = time.time()
@@ -314,34 +314,26 @@ while opcao != 2:
             print("~~~~ OTIMIZADO ~~~~ \n")
             #TO DO TEMPO
             inicio = time.time()
-            tempo_2 = time.time()
-            tempo_usuario = 60
-            tempo_final = tempo_2 + tempo_usuario
             caminho_otimizado, custo_otimizado = two_opt(caminho, grafo)
             fim = time.time()
-            tempo = (fim - inicio)
-            if (tempo_2 > tempo_final):
-                if (custo_otimizado < custo):
-                    print("Rota original: ", caminho)
-                    print("Custo original: ", custo)
-                    print("Tempo original: ", tempo_original, "s")
-                    print("\nRota otimizada: ", caminho_otimizado)
-                    print("Custo otimizado: ", custo_otimizado)
-                    tempo = (fim - inicio)
-                    print("Tempo da otimização: %.4f" % tempo, "s")
-                    string_custo = str(custo_otimizado)
-                    string_caminho = str(caminho_otimizado)
+            if (custo_otimizado < custo):
+                print("Rota original: ", caminho)
+                print("Custo original: ", custo)
+                print("Tempo original: ", tempo_original, "s")
+                print("\nRota otimizada: ", caminho_otimizado)
+                print("Custo otimizado: ", custo_otimizado)
+                tempo = (fim - inicio)
+                print("Tempo da otimização: %.4f" % tempo, "s")
+                string_custo = str(custo_otimizado)
+                string_caminho = str(caminho_otimizado)
 
-                    arquivo = open('saida.txt', 'w')
-                    arquivo.write(string_custo)
-                    arquivo.write(string_caminho)
-                    arquivo.close
-                    print()
-                    print(tempo_final)
-                    print(tempo_2)
-                    print("\nArquivo salvado!")
-                else:
-                    print("Tempo excedido!")
+                arquivo = open('saida.txt', 'w')
+                arquivo.write(string_custo)
+                arquivo.write(string_caminho)
+                arquivo.close
+                print()
+                print("\nArquivo salvado!")
+
             else:
                 print("Não existe otimização para essa rota!")
         elif (opcao_2 == 2):
